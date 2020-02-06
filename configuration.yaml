@@ -1,0 +1,351 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Jans automatiska burk hemma
+
+  customize:
+    # Add an entry for each entity that you want to overwrite.
+    sensor.test_volt1:
+      hidden: true
+    sensor.test_volt2:
+      hidden: true
+    sensor.test_volt3:
+      hidden: true
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+mobile_app:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+# Discover some devices automatically
+discovery:
+
+# Hur lange skall data sparas
+recorder:
+  purge_keep_days: 20
+
+# View all events in a logbook
+logbook:
+
+system_log:
+  fire_event: true
+
+lovelace:
+#  mode: yaml
+
+# Example Lovelace UI config entry
+#  resources:
+#    - type: module
+#      url: /local/custom-weather-card-chart.js
+#custom_updater:
+#  show_installable: False
+#  track:
+#    - cards                                                                                                                                                                                         
+#  card_urls:
+#    - https://raw.githubusercontent.com/sgttrs/lovelace-weather-card-chart/master/custom-updater.json
+
+# The System Health component provides an API to offer information on the system and its components.
+# It also allows to run diagnostic tools to diagnose problems.
+system_health:
+
+mqtt:
+    broker: 192.168.112.13
+    #broker: 192.168.1.134
+    username: "homeassistant"
+    password: "jans-ha"
+    discovery: true
+    discovery_prefix: homeassistant
+
+# Track the sun
+sun:
+
+binary_sensor:
+  - platform: aurora
+
+  - platform: workday
+    country: SE
+
+  - platform: trend
+    sensors:
+      phone_battery_increase:
+        entity_id: sensor.batteri_honor9
+        #entity_id: sensor.phone_battery_level
+      phone_battery_decrease:
+        entity_id: sensor.batteri_honor9
+        #entity_id: sensor.phone_battery_level
+        invert: true
+
+# Example configuration.yaml entry
+owntracks:
+  max_gps_accuracy: 200
+  waypoints: true
+  mqtt_topic: "owntracks/#"
+  events_only: true
+  waypoint_whitelist:
+    - homeassistant
+  region_mapping:
+    cabin: home
+    office: work
+
+tellstick:
+  signal_repetitions: 2
+switch:
+  - platform: tellstick
+
+  - platform: mqtt
+    name: "SonoffTH16A"
+    state_topic: "stat/tasmotaTH16A/RESULT"
+    value_template: "{{ value_json.POWER }}"
+    command_topic: "cmnd/tasmotaTH16A/POWER"
+    availability_topic: "tele/tasmotaTH16A/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_free
+      - type: swap_use_percent
+      - type: load_1m
+      - type: load_5m
+      - type: processor_use
+      - type: last_boot
+
+  - platform: time_date
+    display_options:
+      - 'time'
+  - platform: template
+    sensors:
+      veckodag:
+        value_template: "{{ ['Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag','Söndag'][now().weekday()] }}"
+#        value_template: "{{ ['Mandag','Tisdag','Onsdag','Torsdag','Fredag','Lordag','Sondag'][now().weekday()] }}"
+        entity_id: sensor.time
+
+  - platform: mqtt
+    state_topic: "owntracks/homeassistant/Janshonor9"
+    name: "Batteri Honor9"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.batt }}'
+    device_class: battery
+
+  - platform: template
+    sensors:
+      phone_battery_level:
+        friendly_name: Phone Battery Level
+        unit_of_measurement: '%'
+        value_template: '{{ states("sensor.batteri_honor9") }}'
+        icon_template: >-
+          {% set battery_level = states("sensor.batteri_honor9")|int('unknown') %}
+          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+          {% if battery_level == 'unknown' %}
+            mdi:battery-unknown
+          {% else %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}
+      phone_battery_state:
+        friendly_name: Phone Battery State
+        value_template: >-
+          {% set battery_level = states("sensor.batteri_honor9")|int('unknown') %}
+          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+          {% set charging = is_state("binary_sensor.phone_battery_increase","on") %}
+          {% set discharging = is_state("binary_sensor.phone_battery_increase","on") %}
+          {% if charging %}
+            Charging
+          {% else %}
+            {% if battery_round >= 100 %}
+              Full
+            {% elif battery_round > 0 %}
+              Unplugged
+            {% else %}
+              Low
+            {% endif %}
+          {% endif %}
+        icon_template: >-
+          {% set battery_level = states("sensor.batteri_honor9")|int('unknown') %}
+          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+          {% set charging = is_state("binary_sensor.phone_battery_increase","on") %}
+          {% set discharging = is_state("binary_sensor.phone_battery_increase","on") %}
+          {% if charging %}
+            mdi:power-plug
+          {% else %}
+            mdi:power-plug-off
+          {% endif %}
+
+  - platform: template
+    sensors:
+      manad:
+        value_template: "{{ ['Jan1','Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][now().month] }}"
+        entity_id: sensor.time
+
+#  - platform: darksky
+#    api_key: 040a01baf0198d1970646eb3816ec49a
+#    forecast:
+#      - 0
+#      - 1
+#      - 2
+#    language:
+#      sv
+#    hourly_forecast:
+#      - 0
+#      - 1
+#      - 2
+#      - 3
+#      - 4
+#      - 5
+#      - 6
+#      - 7
+#    monitored_conditions:
+#      - summary
+#      - icon
+#      - temperature
+#      - precip_intensity
+#      - precip_probability
+
+#  - platform: mqtt
+#    name: "Inne temp1"
+#    state_topic: "homeassistant/mini1/temp1"
+#    unit_of_measurement: "°C"
+#  - platform: mqtt
+#    name: "Xiaomi temp"
+#    state_topic: "homeassistant/xiaomi/sensor1/temp"
+#    unit_of_measurement: "°C"
+#  - platform: mqtt
+#    name: "Xiaomi fukt"
+#    state_topic: "homeassistant/xiaomi/sensor1/fukt"
+#    unit_of_measurement: "%"
+#  - platform: mqtt
+#    name: "Xiaomi batteri"
+#    state_topic: "homeassistant/xiaomi/sensor1/battery"
+#    unit_of_measurement: "%"
+
+  - platform: mqtt
+    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B' # MQTT topic, check MQTT messages; replace AA... with id (BLE MAC) of your device
+    name: "Mijia2_temperatur"
+    unit_of_measurement: '°C'
+    value_template: '{{ value_json.tem | is_defined }}'
+    expire_after: 21600 # 6 hours
+    device_class: temperature
+  - platform: mqtt
+    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B'
+    name: "Mijia2_fukt"
+    unit_of_measurement: '%'
+    value_template: '{{ value_json.hum | is_defined }}'
+    expire_after: 21600 # 6 hours
+    device_class: humidity
+  - platform: mqtt
+    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B'
+    name: "Mijia2_batteri"
+    unit_of_measurement: '%'
+    value_template: '{{ value_json.batt | is_defined }}'
+    expire_after: 21600 # 6 hours
+    device_class: battery
+
+  - platform: mqtt
+    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/4C65A8DDD508' # MQTT topic, check MQTT messages; replace AA... with id (BLE MAC) of your device
+    name: "Mijia1_temperatur"
+    unit_of_measurement: '°C'
+    value_template: '{{ value_json.tem | is_defined }}'
+    expire_after: 21600 # 6 hours
+    device_class: temperature
+  - platform: mqtt
+    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/4C65A8DDD508'
+    name: "Mijia1_fukt"
+    unit_of_measurement: '%'
+    value_template: '{{ value_json.hum | is_defined }}'
+    expire_after: 21600 # 6 hours
+    device_class: humidity
+  - platform: mqtt
+    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/4C65A8DDD508'
+    name: "Mijia1_batteri"
+    unit_of_measurement: '%'
+    value_template: '{{ value_json.batt | is_defined }}'
+    expire_after: 21600 # 6 hours
+    device_class: battery
+
+#  - platform: mqtt
+#    name: "SonoffTH16A temp"
+#    state_topic: "tele/tasmotaTH16A/SENSOR"
+#    value_template: "{{ value_json['DS18B20'].Temperature }}"
+#    unit_of_measurement: "°C"  # "F" if using Fahrenheit
+#    availability_topic: "tele/tasmotaTH16A/LWT"
+#    payload_available: "Online"
+#    payload_not_available: "Offline"
+#    device_class: temperature
+
+  - platform: mqtt
+    name: "Temp TH16A"
+    state_topic: "tele/tasmotaTH16A/SENSOR"
+    value_template: "{{ value_json['DHT11'].Temperature }}"
+    unit_of_measurement: "°C"  # "F" if using Fahrenheit
+    icon: mdi:thermometer
+    availability_topic: "tele/tasmotaTH16A/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: temperature
+
+  - platform: mqtt
+    name: "Fukt TH16A"
+    state_topic: "tele/tasmotaTH16A/SENSOR"
+    value_template: "{{ value_json['DHT11'].Humidity }}"
+    unit_of_measurement: "%"
+    icon: mdi:water-percent
+    availability_topic: "tele/tasmotaTH16A/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: humidity
+
+device_tracker:
+  - platform: nmap_tracker
+    consider_home: 300
+    hosts: 192.168.112.1-255
+    interval_seconds: 30
+    home_interval: 10
+
+  - platform: ping
+    scan_interval: 30
+    hosts:
+      honor_9_5af5052c4cb36b96_lan: 192.168.112.173
+      samsung_galaxy_s7_lan: 192.168.112.232
+      #galaxy_s6_lan:
+
+weather:
+  - platform: darksky
+    api_key: 040a01baf0198d1970646eb3816ec49a
+
+tuya:
+  username: ja-jo@bredband.net
+  password: Asien99
+  country_code: 46
+  platform: tuya
+
+# Example configuration.yaml entries
+light:
+  - platform: xiaomi_miio
+    name: Xiaomi Philips Smart LED Ball
+    host: 192.168.112.169
+    token: 3404e4287530ab6d2bd9598a279db4c1
+    model: philips.light.bulb
+

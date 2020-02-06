@@ -1,0 +1,296 @@
+
+jans_router:
+  hide_if_away: false
+  icon:
+  mac: 10:13:31:6A:F1:66
+  name: jans-router
+  picture:
+  track: true
+
+tg799vacxtream_ap_6af170_lan:
+  hide_if_away: false
+  icon:
+  mac: 12:13:31:6A:F1:6F
+  name: TG799vacXtream-AP-6AF170.lan
+  picture:
+  track: true
+
+fc_15_b4_a9_61_35:
+  hide_if_away: false
+  icon:
+  mac: FC:15:B4:A9:61:35
+  name: fc 15 b4 a9 61 35
+  picture:
+  track: true
+
+galaxy_s6_lan:
+  hide_if_away: false
+  icon:
+  mac: A4:08:EA:A7:B1:0C
+  name: Galaxy-S6.lan
+  picture:
+  track: true
+
+hostname_23_92_3a_lan:
+  hide_if_away: false
+  icon:
+  mac: C8:F7:42:23:92:3A
+  name: hostName-23-92-3a.lan
+  picture:
+  track: true
+
+android_d5127368bb2f5261_lan:
+  hide_if_away: false
+  icon:
+  mac: EC:9B:F3:4F:6D:C6
+  name: android-d5127368bb2f5261.lan
+  picture:
+  track: true
+
+fias_ipad_lan:
+  hide_if_away: false
+  icon:
+  mac: BC:B8:63:F0:84:60
+  name: Fias-iPad.lan
+  picture:
+  track: true
+
+honor_9_5af5052c4cb36b96_lan:
+  hide_if_away: false
+  icon:
+  mac: 70:8A:09:D8:D5:45
+  name: Jans-Honor9
+  picture:
+  track: true
+
+c0_41_f6_81_1b_6e:
+  hide_if_away: false
+  icon:
+  mac: C0:41:F6:81:1B:6E
+  name: c0 41 f6 81 1b 6e
+  picture:
+  track: true
+
+chromecast_lan:
+  hide_if_away: false
+  icon:
+  mac: 88:3D:24:15:C8:F6
+  name: Chromecast.lan
+  picture:
+  track: true
+
+samsung_galaxy_s7_lan:
+  hide_if_away: false
+  icon:
+  mac: 2C:0E:3D:5E:63:BE
+  name: Samsung-Galaxy-S7.lan
+  picture:
+  track: true
+
+med010_lan:
+  hide_if_away: false
+  icon:
+  mac: B8:EE:65:5F:B2:61
+  name: MED010.lan
+  picture:
+  track: true
+
+tg799vacxtream_ap_6af170_lan_2:
+  hide_if_away: false
+  icon:
+  mac: 00:00:00:00:00:00
+  name: TG799vacXtream-AP-6AF170.lan
+  picture:
+  track: true
+
+anns_iphone_lan:
+  hide_if_away: false
+  icon:
+  mac: D0:D2:B0:53:98:78
+  name: Anns-Iphone.lan
+  picture:
+  track: true
+
+esp_8934dc_lan:
+  hide_if_away: false
+  icon:
+  mac: D8:F1:5B:89:34:DC
+  name: ESP 8934DC.lan
+  picture:
+  track: true
+
+debian9_light_lan:
+  hide_if_away: false
+  icon:
+  mac: 08:00:27:E6:51:A8
+  name: debian9-light.lan
+  picture:
+  track: true
+
+esp_3979a5_lan:
+  hide_if_away: false
+  icon:
+  mac: EC:FA:BC:39:79:A5
+  name: ESP 3979A5.lan
+  picture:
+  track: true
+
+espressif_lan:
+  hide_if_away: false
+  icon:
+  mac: CC:50:E3:AE:06:F0
+  name: espressif.lan
+  picture:
+  track: true
+
+esp_be35c3_lan:
+  hide_if_away: false
+  icon:
+  mac: 2C:F4:32:BE:35:C3
+  name: ESP BE35C3.lan
+  picture:
+  track: true
+
+esp_1543a9_lan:
+  hide_if_away: false
+  icon:
+  mac: CC:50:E3:15:43:A9
+  name: ESP 1543A9.lan
+  picture:
+  track: true
+
+manjaro_lan:
+  hide_if_away: false
+  icon:
+  mac: 08:11:96:1F:A8:84
+  name: manjaro.lan
+  picture:
+  track: true
+
+esp_69312e_lan:
+  hide_if_away: false
+  icon:
+  mac: 44:23:7C:69:31:2E
+  name: ESP 69312E.lan
+  picture:
+  track: true
+
+plk_l01_d618ed6d547a50a1_lan:
+  hide_if_away: false
+  icon:
+  mac: 24:DF:6A:44:22:75
+  name: PLK-L01-d618ed6d547a50a1.lan
+  picture:
+  track: true
+
+jans_manjaro2_lan:
+  hide_if_away: false
+  icon:
+  mac: 08:11:96:36:94:D0
+  name: jans-manjaro2.lan
+  picture:
+  track: true
+
+sonoff_2014_lan:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:CD:27:DE
+  name: sonoff-2014.lan
+  picture:
+  track: true
+
+pelles_dator_lan:
+  hide_if_away: false
+  icon:
+  mac: 24:BE:05:1C:E2:EF
+  name: Pelles-dator.lan
+  picture:
+  track: true
+
+galaxy_s8_lan:
+  hide_if_away: false
+  icon:
+  mac: 08:C5:E1:9F:2B:2D
+  name: Galaxy-S8.lan
+  picture:
+  track: true
+
+leahs_iphone_lan:
+  hide_if_away: false
+  icon:
+  mac: F8:4E:73:A9:88:88
+  name: Leahs-iPhone.lan
+  picture:
+  track: true
+
+liz_iphone_6s_lan:
+  hide_if_away: false
+  icon:
+  mac: 0C:D7:46:95:73:67
+  name: Liz-iPhone-6S.lan
+  picture:
+  track: true
+
+calypsos_iphone_lan:
+  hide_if_away: false
+  icon:
+  mac: 28:5A:EB:D3:C0:58
+  name: Calypsos-iPhone.lan
+  picture:
+  track: true
+
+espressif_lan_2:
+  hide_if_away: false
+  icon:
+  mac: CC:50:E3:A8:06:C0
+  name: espressif.lan
+  picture:
+  track: true
+
+espressif_lan_3:
+  hide_if_away: false
+  icon:
+  mac: A4:CF:12:0B:8D:80
+  name: espressif.lan
+  picture:
+  track: true
+
+android_bd2ad6bc7adabe37_lan:
+  hide_if_away: false
+  icon:
+  mac: 94:DB:C9:EC:50:5B
+  name: android-bd2ad6bc7adabe37.lan
+  picture:
+  track: true
+
+fias_dator_lan:
+  hide_if_away: false
+  icon:
+  mac: A0:D3:C1:43:0C:C8
+  name: FIAS-DATOR.lan
+  picture:
+  track: true
+
+tasmota_1523_lan:
+  hide_if_away: false
+  icon:
+  mac: C4:4F:33:C1:A5:F3
+  name: tasmota-1523.lan
+  picture:
+  track: true
+
+tasmota_3373_lan:
+  hide_if_away: false
+  icon:
+  mac: A4:CF:12:B5:AD:2D
+  name: tasmota-3373.lan
+  picture:
+  track: true
+
+tasmotath16b_4150_lan:
+  hide_if_away: false
+  icon:
+  mac: A4:CF:12:B5:B0:36
+  name: tasmotaTH16b-4150.lan
+  picture:
+  track: true

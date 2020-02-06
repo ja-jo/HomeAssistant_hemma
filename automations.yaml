@@ -1,0 +1,211 @@
+  - alias: "Solnedgang"
+    trigger:
+      platform: sun
+      event: sunset
+    condition:
+      condition: state
+      entity_id: group.familjen
+      state: home
+    action:
+      - service: switch.turn_on
+        entity_id: group.lampor
+      - service: light.turn_on
+        entity_id: light.xiaomi_philips_smart_led_ball
+        data:
+          brightness_pct: 100
+          color_name: white
+
+  - alias: "On nar nagon kommer"
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      from: 'not_home'
+      to: 'home'
+    condition:
+      - condition: or
+        conditions:
+          - condition: sun
+            after: sunset
+          - condition: sun
+            before: sunrise
+    action:
+    - data:
+        entity_id: group.lampor
+      service: switch.turn_on
+
+  - alias: "Full belysning vid pa 19"
+    trigger:
+      - platform: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        #from: 'off'
+        to: 'on'
+    condition:
+      condition: time
+      # At least one of the following is required.
+      after: '15:00:00'
+      before: '20:30:00'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          brightness: 255
+          color_name: white
+
+  - alias: "Belysning vid pa 20"
+    trigger:
+      - platform: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        #from: 'off'
+        to: 'on'
+    condition:
+      condition: time
+      # At least one of the following is required.
+      after: '20:30:00'
+      before: '21:00:00'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          color_name: yellow
+          brightness: 255
+
+  - alias: "Belysning vid pa 21"
+    trigger:
+      - platform: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        #from: 'off'
+        to: 'on'
+    condition:
+      condition: time
+      # At least one of the following is required.
+      after: '21:00:00'
+      before: '22:00:00'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          color_name: yellow
+          brightness: 150
+
+  - alias: "Belysning vid pa 22"
+    trigger:
+      - platform: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        #from: 'off'
+        to: 'on'
+    condition:
+      condition: time
+      # At least one of the following is required.
+      after: '22:00:00'
+      before: '23:59:00'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          color_name: orange
+          brightness: 100
+
+  - alias: "Lampa Kl19"
+    trigger:
+      - platform: time_pattern
+        hours: '19'
+        minutes: '00'
+    condition:
+      - condition: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        state: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          color_name: white
+          brightness: 255
+
+  - alias: "Lampa Kl20"
+    trigger:
+      - platform: time_pattern
+        hours: '20'
+        minutes: '30'
+    condition:
+      - condition: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        state: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          color_name: white
+          brightness: 255
+
+  - alias: "Lampa Kl21"
+    trigger:
+      - platform: time_pattern
+        hours: '21'
+        minutes: '00'
+    condition:
+      - condition: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        state: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          color_name: yellow
+          brightness: 150
+
+  - alias: "Lampa Kl22"
+    trigger:
+      - platform: time_pattern
+        hours: '22'
+        minutes: '00'
+    condition:
+      - condition: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        state: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          color_name: orange
+          brightness: 100
+
+  - alias: "Lampa Kl23"
+    trigger:
+      - platform: time_pattern
+        hours: '23'
+        minutes: '00'
+    condition:
+      - condition: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        state: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+          transition: 30
+          color_name: gold
+          brightness: 50
+
+  - alias: "Lampa av"
+    trigger:
+      - platform: time_pattern
+        hours: '00'
+        minutes: '00'
+        seconds: '30'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+      - service: switch.turn_off
+        data:
+          entity_id: group.lampor
+
+

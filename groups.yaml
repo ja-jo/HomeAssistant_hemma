@@ -1,0 +1,36 @@
+  lampor:
+    name: Lampor
+    entities:
+      - light.xiaomi_philips_smart_led_ball
+      - switch.105460322cf432be35c3
+      - switch.nr2
+      - switch.nr7
+
+  jans:
+    name: Jans enheter
+    view: no
+    entities:
+      - device_tracker.honor_9_5af5052c4cb36b96_lan
+      - device_tracker.med010_lan
+      - device_tracker.plk_l01_d618ed6d547a50a1_lan
+
+  familjen:
+    name: Familjen
+    view: no
+    entities:
+      - device_tracker.honor_9_5af5052c4cb36b96_lan
+      - device_tracker.med010_lan
+      - device_tracker.plk_l01_d618ed6d547a50a1_lan
+      - device_tracker.galaxy_s6_lan
+      - device_tracker.fias_ipad_lan
+      - device_tracker.samsung_galaxy_s7_lan
+      - device_tracker.android_d5127368bb2f5261_lan
+
+  dejemyr:
+    name: Dejemyrs saker
+    #icon: mdi:alarm
+    view: yes
+    entities:
+      - group.familjen
+      - light.xiaomi_philips_smart_led_ball
+      
