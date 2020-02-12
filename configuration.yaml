@@ -331,15 +331,20 @@ device_tracker:
       samsung_galaxy_s7_lan: 192.168.112.232
       #galaxy_s6_lan:
 
+  - platform: thomson
+    host: 192.168.112.1
+    username: !secret thomson_user
+    password: !secret thomson_password
+
 weather:
   - platform: darksky
     api_key: 040a01baf0198d1970646eb3816ec49a
 
-tuya:
-  username: ja-jo@bredband.net
-  password: Asien99
-  country_code: 46
-  platform: tuya
+#tuya:
+#  username: ja-jo@bredband.net
+#  password: xxxxx
+#  country_code: 46
+#  platform: tuya
 
 # Example configuration.yaml entries
 light:

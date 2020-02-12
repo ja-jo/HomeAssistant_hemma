@@ -18,7 +18,7 @@
   - alias: "On nar nagon kommer"
     trigger:
       platform: state
-      entity_id: group.all_devices
+      entity_id: group.familjen
       from: 'not_home'
       to: 'home'
     condition:
