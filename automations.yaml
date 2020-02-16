@@ -208,4 +208,18 @@
         data:
           entity_id: group.lampor
 
+  - alias: "Sla av alla lampor om av efter 23"
+    trigger:
+      - platform: state
+        entity_id: light.xiaomi_philips_smart_led_ball
+        to: 'unavailable'
+    condition:
+      condition: time
+      # At least one of the following is required.
+      after: '23:00:00'
+      #before: '23:59:00'
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: group.lampor
 
