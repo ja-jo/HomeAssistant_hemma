@@ -7,12 +7,14 @@
       entity_id: group.familjen
       state: home
     action:
+      - delay: '00:15:00'
       - service: switch.turn_on
         entity_id: group.lampor
       - service: light.turn_on
         entity_id: light.xiaomi_philips_smart_led_ball
         data:
           brightness_pct: 100
+          transition: 120
           color_name: white
 
   - alias: "On nar nagon kommer"

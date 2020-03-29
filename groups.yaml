@@ -7,7 +7,7 @@
 
   jans:
     name: Jans enheter
-    view: no
+    #view: no
     entities:
       - device_tracker.honor_9_5af5052c4cb36b96_lan
       - device_tracker.med010_lan
@@ -15,7 +15,7 @@
 
   familjen:
     name: Familjen
-    view: no
+    #view: no
     entities:
       - device_tracker.honor_9_5af5052c4cb36b96_lan
       - device_tracker.med010_lan
@@ -28,7 +28,7 @@
   dejemyr:
     name: Dejemyrs saker
     #icon: mdi:alarm
-    view: yes
+    #view: yes
     entities:
       - group.familjen
       - light.xiaomi_philips_smart_led_ball

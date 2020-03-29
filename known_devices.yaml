@@ -294,3 +294,27 @@ tasmotath16b_4150_lan:
   name: tasmotaTH16b-4150.lan
   picture:
   track: true
+
+sonoffbasic4_3028_lan:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:BF:AB:D4
+  name: SonoffBasic4-3028.lan
+  picture:
+  track: true
+
+iphone_yass_lan:
+  hide_if_away: false
+  icon:
+  mac: E0:89:7E:26:F5:34
+  name: IPHONE-YASS.lan
+  picture:
+  track: true
+
+tasmota_4834_lan:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:BF:B2:E2
+  name: tasmota-4834.lan
+  picture:
+  track: true

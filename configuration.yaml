@@ -228,40 +228,47 @@ sensor:
 #    name: "Inne temp1"
 #    state_topic: "homeassistant/mini1/temp1"
 #    unit_of_measurement: "°C"
-#  - platform: mqtt
-#    name: "Xiaomi temp"
-#    state_topic: "homeassistant/xiaomi/sensor1/temp"
-#    unit_of_measurement: "°C"
-#  - platform: mqtt
-#    name: "Xiaomi fukt"
-#    state_topic: "homeassistant/xiaomi/sensor1/fukt"
-#    unit_of_measurement: "%"
-#  - platform: mqtt
-#    name: "Xiaomi batteri"
-#    state_topic: "homeassistant/xiaomi/sensor1/battery"
-#    unit_of_measurement: "%"
 
   - platform: mqtt
-    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B' # MQTT topic, check MQTT messages; replace AA... with id (BLE MAC) of your device
-    name: "Mijia2_temperatur"
-    unit_of_measurement: '°C'
-    value_template: '{{ value_json.tem | is_defined }}'
+    state_topic: "homeassistant/xiaomi2/temp"
+    name: "Xiaomi2 temp"
+    unit_of_measurement: "°C"
     expire_after: 21600 # 6 hours
     device_class: temperature
   - platform: mqtt
-    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B'
-    name: "Mijia2_fukt"
-    unit_of_measurement: '%'
-    value_template: '{{ value_json.hum | is_defined }}'
+    state_topic: "homeassistant/xiaomi2/fukt"
+    name: "Xiaomi2 fukt"
+    unit_of_measurement: "%"
     expire_after: 21600 # 6 hours
     device_class: humidity
   - platform: mqtt
-    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B'
-    name: "Mijia2_batteri"
-    unit_of_measurement: '%'
-    value_template: '{{ value_json.batt | is_defined }}'
+    state_topic: "homeassistant/xiaomi2/battery"
+    name: "Xiaomi2 batteri"
+    unit_of_measurement: "%"
     expire_after: 21600 # 6 hours
     device_class: battery
+
+#  - platform: mqtt
+#    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B' # MQTT topic, check MQTT messages; replace AA... with id (BLE MAC) of your device
+#    name: "Mijia2_temperatur"
+#    unit_of_measurement: '°C'
+#    value_template: '{{ value_json.tem | is_defined }}'
+#    expire_after: 21600 # 6 hours
+#    device_class: temperature
+#  - platform: mqtt
+#    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B'
+#    name: "Mijia2_fukt"
+#    unit_of_measurement: '%'
+#    value_template: '{{ value_json.hum | is_defined }}'
+#    expire_after: 21600 # 6 hours
+#    device_class: humidity
+#  - platform: mqtt
+#    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B'
+#    name: "Mijia2_batteri"
+#    unit_of_measurement: '%'
+#    value_template: '{{ value_json.batt | is_defined }}'
+#    expire_after: 21600 # 6 hours
+#    device_class: battery
 
   - platform: mqtt
     state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/4C65A8DDD508' # MQTT topic, check MQTT messages; replace AA... with id (BLE MAC) of your device
