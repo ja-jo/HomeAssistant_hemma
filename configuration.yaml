@@ -41,6 +41,13 @@ logbook:
 system_log:
   fire_event: true
 
+influxdb:
+  host: 192.168.112.13
+  #include:
+  #  entities:
+  #    - sensor.xiaomi2_temp
+  #    - sensor.xiaomi2_fukt
+
 lovelace:
 #  mode: yaml
 
@@ -138,6 +145,8 @@ sensor:
 #        value_template: "{{ ['Mandag','Tisdag','Onsdag','Torsdag','Fredag','Lordag','Sondag'][now().weekday()] }}"
         entity_id: sensor.time
 
+  - platform: moon
+
   - platform: mqtt
     state_topic: "owntracks/homeassistant/Janshonor9"
     name: "Batteri Honor9"
@@ -224,6 +233,10 @@ sensor:
 #      - precip_intensity
 #      - precip_probability
 
+  - platform: mqtt
+    name: "Test nr"
+    state_topic: "homeassistant/test/nr1"
+
 #  - platform: mqtt
 #    name: "Inne temp1"
 #    state_topic: "homeassistant/mini1/temp1"
@@ -233,20 +246,28 @@ sensor:
     state_topic: "homeassistant/xiaomi2/temp"
     name: "Xiaomi2 temp"
     unit_of_measurement: "°C"
-    expire_after: 21600 # 6 hours
+    expire_after: 36000 # 10 timmar
     device_class: temperature
   - platform: mqtt
     state_topic: "homeassistant/xiaomi2/fukt"
     name: "Xiaomi2 fukt"
     unit_of_measurement: "%"
-    expire_after: 21600 # 6 hours
+    expire_after: 36000 # 10 timmar
     device_class: humidity
   - platform: mqtt
     state_topic: "homeassistant/xiaomi2/battery"
     name: "Xiaomi2 batteri"
     unit_of_measurement: "%"
-    expire_after: 21600 # 6 hours
+    expire_after: 36000 # 10 timmar
     device_class: battery
+
+  - platform: mitemp_bt
+    mac: '58:2D:34:38:05:0B'
+    name: Pinnar
+    monitored_conditions:
+      - temperature
+      - humidity
+      - battery
 
 #  - platform: mqtt
 #    state_topic: 'home/OpenMQTTGateway_ESP32_BLE/BTtoMQTT/582D3438050B' # MQTT topic, check MQTT messages; replace AA... with id (BLE MAC) of your device

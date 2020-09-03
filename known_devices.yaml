@@ -318,3 +318,47 @@ tasmota_4834_lan:
   name: tasmota-4834.lan
   picture:
   track: true
+
+huawei_mediapad_t3_10_592_lan:
+  icon:
+  mac: 90:17:C8:DC:23:5C
+  name: HUAWEI_MediaPad_T3_10-592.lan
+  picture:
+  track: true
+
+ullasipohansson:
+  hide_if_away: false
+  icon:
+  mac: CC:78:5F:BF:93:30
+  name: UllasiPohansson
+  picture:
+  track: true
+
+
+med116_lan:
+  icon:
+  mac: 80:32:53:A5:A5:F0
+  name: MED116.lan
+  picture:
+  track: true
+
+med116_lan_2:
+  icon:
+  mac: F8:75:A4:8A:5F:6E
+  name: MED116.lan
+  picture:
+  track: true
+
+galaxy_s20_lan:
+  icon:
+  mac: 62:14:45:2E:86:A3
+  name: Galaxy-S20.lan
+  picture:
+  track: true
+
+esp_034995_lan:
+  icon:
+  mac: C8:2B:96:03:49:95
+  name: ESP-034995.lan
+  picture:
+  track: true
