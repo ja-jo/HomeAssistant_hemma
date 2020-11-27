@@ -7,7 +7,7 @@
       entity_id: group.familjen
       state: home
     action:
-      - delay: '00:15:00'
+  #    - delay: '00:15:00'
       - service: switch.turn_on
         entity_id: group.lampor
       - service: light.turn_on
@@ -16,6 +16,18 @@
           brightness_pct: 100
           transition: 120
           color_name: white
+
+  - alias: "Lampa av soluppgang"
+    trigger:
+      platform: sun
+      event: sunrise
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.xiaomi_philips_smart_led_ball
+      - service: switch.turn_off
+        data:
+          entity_id: group.lampor
 
   - alias: "On nar nagon kommer"
     trigger:
@@ -209,7 +221,7 @@
     trigger:
       - platform: time_pattern
         #hours: '00'
-        minutes: '00'
+        minutes: '20'
         seconds: '30'
     condition:
       - condition: state
@@ -241,4 +253,68 @@
       - service: switch.turn_off
         data:
           entity_id: group.lampor
+
+  - alias: "Sla av alla lampor om min telefon laddas efter 22:30"
+    trigger:
+      - platform: state
+        entity_id: sensor.stf_l09_battery_state
+        to: 'charging'
+    condition:
+      condition: time
+      # At least one of the following is required.
+      after: '22:30:00'
+      #before: '23:59:00'
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: group.lampor
+      - service: light.turn_off
+        data:
+          entity_id: group.lampor
+
+  - alias: Tand lampa
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_sensor
+      to: 'on'
+    action:
+      service: light.turn_on
+      entity_id: light.xiaomi_philips_smart_led_ball
+  
+  - alias: Slack lampa
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_sensor
+      to: 'off'
+      for:
+        minutes: 2
+    action:
+      service: light.turn_off
+      entity_id: light.xiaomi_philips_smart_led_ball
+
+  - alias: "Lyse pa margonen"
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_sensor
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          # At least one of the following is required.
+          after: '06:30:00'
+          before: '09:00:00'
+        - condition: state
+          entity_id: binary_sensor.workday_sensor
+          state: 'on'
+        - condition: or
+          conditions:
+            - condition: sun
+              before: sunrise
+            - condition: sun
+              after: sunset
+    action:
+    - data:
+        entity_id: group.lampor
+      service: switch.turn_on
 

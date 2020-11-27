@@ -352,7 +352,7 @@ med116_lan_2:
 galaxy_s20_lan:
   icon:
   mac: 62:14:45:2E:86:A3
-  name: Galaxy-S20.lan
+  name: Pelles_Galaxy-S20.lan
   picture:
   track: true
 
@@ -360,5 +360,89 @@ esp_034995_lan:
   icon:
   mac: C8:2B:96:03:49:95
   name: ESP-034995.lan
+  picture:
+  track: true
+
+melvinsiphonexr_lan:
+  icon:
+  mac: 74:B5:87:14:06:C6
+  name: MelvinsiPhoneXR.lan
+  picture:
+  track: true
+
+noelsunlsiphone_lan:
+  icon:
+  mac: F8:87:F1:7E:1E:85
+  name: NoelSunlsiPhone.lan
+  picture:
+  track: true
+
+mbpsomtormelvin_lan:
+  icon:
+  mac: 3C:15:C2:BD:CC:AA
+  name: MBPsomtorMelvin.lan
+  picture:
+  track: true
+
+noels_air_lan:
+  icon:
+  mac: 94:F6:D6:25:C3:C0
+  name: Noels-Air.lan
+  picture:
+  track: true
+
+galaxy_s20_lan_2:
+  icon:
+  mac: 46:87:3D:61:3F:4A
+  name: Galaxy-S20.lan
+  picture:
+  track: true
+
+esp_45e2e1_lan:
+  icon:
+  mac: 48:3F:DA:45:E2:E1
+  name: ESP-45E2E1.lan
+  picture:
+  track: true
+
+testesp12_lan:
+  icon:
+  mac: 10:52:1C:E3:6A:E4
+  name: testesp12.lan
+  picture:
+  track: true
+
+ac_67_5d_2e_f1_da:
+  name: ac_67_5d_2e_f1_da
+  mac: AC:67:5D:2E:F1:DA
+  icon:
+  picture:
+  track: true
+
+pir_lan:
+  name: pir.lan
+  mac: 48:3F:DA:46:2F:E4
+  icon:
+  picture:
+  track: true
+
+fias_ipad_lan_2:
+  name: Fias-iPad.lan
+  mac: 1E:F0:E5:9E:16:95
+  icon:
+  picture:
+  track: true
+
+fias_ipad_lan_3:
+  name: Fias-iPad.lan
+  mac: F2:80:E9:2B:1F:23
+  icon:
+  picture:
+  track: true
+
+anns_iphone_lan_2:
+  name: Anns-Iphone.lan
+  mac: 64:0B:D7:7D:91:7E
+  icon:
   picture:
   track: true

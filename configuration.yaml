@@ -110,12 +110,25 @@ tellstick:
 switch:
   - platform: tellstick
 
+#  - platform: mqtt
+#    name: "SonoffTH16A"
+#    state_topic: "stat/tasmotaTH16A/RESULT"
+#    value_template: "{{ value_json.POWER }}"
+#    command_topic: "cmnd/tasmotaTH16A/POWER"
+#    availability_topic: "tele/tasmotaTH16A/LWT"
+#    qos: 1
+#    payload_on: "ON"
+#    payload_off: "OFF"
+#    payload_available: "Online"
+#    payload_not_available: "Offline"
+#    retain: false
+
   - platform: mqtt
-    name: "SonoffTH16A"
-    state_topic: "stat/tasmotaTH16A/RESULT"
+    name: "SonoffBasic4"
+    state_topic: "stat/SonoffBasic4/RESULT"
     value_template: "{{ value_json.POWER }}"
-    command_topic: "cmnd/tasmotaTH16A/POWER"
-    availability_topic: "tele/tasmotaTH16A/LWT"
+    command_topic: "cmnd/SonoffBasic4/POWER"
+    availability_topic: "tele/SonoffBasic4/LWT"
     qos: 1
     payload_on: "ON"
     payload_off: "OFF"
@@ -146,6 +159,22 @@ sensor:
         entity_id: sensor.time
 
   - platform: moon
+
+  - platform: trafikverket_weatherstation
+    name: "Solna"
+    api_key: cd77b4cd4c0c40d4970426637c3c9b34
+    station: "Solna"
+    monitored_conditions:
+        - air_temp
+        - road_temp
+        - humidity
+        - precipitation
+        - wind_direction
+        - wind_direction_text
+        - wind_speed
+        - wind_speed_max
+        - precipitation_amount
+        - precipitation_amountname
 
   - platform: mqtt
     state_topic: "owntracks/homeassistant/Janshonor9"
@@ -237,6 +266,87 @@ sensor:
     name: "Test nr"
     state_topic: "homeassistant/test/nr1"
 
+  - platform: mqtt
+    name: "Test nr2"
+    state_topic: "homeassistant/test/nr2"
+
+  - platform: mqtt
+    name: "iSpindleJD tilt"
+    state_topic: "ispindel/iSpindelJD/tilt"
+    unit_of_measurement: "°"
+    icon: mdi:beer
+    expire_after: 36000 # 10 timmar
+  - platform: mqtt
+    name: "iSpindleJD temp"
+    state_topic: "ispindel/iSpindelJD/temperature"
+    unit_of_measurement: "°C"
+    expire_after: 36000 # 10 timmar
+    device_class: temperature
+#ispindel/iSpindelJD/temp_units C
+  - platform: mqtt
+    name: "iSpindleJD batteri"
+    state_topic: "ispindel/iSpindelJD/battery"
+    unit_of_measurement: "V"
+    expire_after: 36000 # 10 timmar
+    device_class: battery
+  - platform: mqtt
+    name: "iSpindleJD gravity"
+    state_topic: "ispindel/iSpindelJD/gravity"
+    unit_of_measurement: "SG"
+    icon: mdi:beer
+    expire_after: 36000 # 10 timmar
+  - platform: mqtt
+    name: "iSpindleJD interval"
+    state_topic: "ispindel/iSpindelJD/interval"
+    unit_of_measurement: "sekunder"
+    icon: mdi:av-timer
+    #device_class: timestamp
+    expire_after: 36000 # 10 timmar
+  - platform: mqtt
+    name: "iSpindleJD signal"
+    state_topic: "ispindel/iSpindelJD/RSSI"
+    unit_of_measurement: "signal"
+    icon: mdi:radio-tower
+    expire_after: 36000 # 10 timmar
+
+  - platform: mqtt
+    name: "Pinnar3 temp"
+    state_topic: "homeassistant/sensor/esp_pinnar_temperatur/state"
+    unit_of_measurement: "°C"
+    expire_after: 36000 # 10 timmar
+    device_class: temperature
+  - platform: mqtt
+    name: "Pinnar3 fukt"
+    state_topic: "homeassistant/sensor/esp_pinnar_fukt/state"
+    unit_of_measurement: "%"
+    expire_after: 36000 # 10 timmar
+    device_class: humidity
+  - platform: mqtt
+    name: "Pinnar3 batteri"
+    state_topic: "homeassistant/sensor/esp_pinnar_batteri/state"
+    unit_of_measurement: "V"
+    expire_after: 36000 # 10 timmar
+    device_class: battery
+
+  - platform: mqtt
+    name: "Pinnar5 temp"
+    state_topic: "homeassistant/sensor/esp_pinnar5_temperatur/state"
+    unit_of_measurement: "°C"
+    expire_after: 36000 # 10 timmar
+    device_class: temperature
+  - platform: mqtt
+    name: "Pinnar5 fukt"
+    state_topic: "homeassistant/sensor/esp_pinnar5_fukt/state"
+    unit_of_measurement: "%"
+    expire_after: 36000 # 10 timmar
+    device_class: humidity
+  - platform: mqtt
+    name: "Pinnar5 batteri"
+    state_topic: "homeassistant/sensor/esp_pinnar5_batteri/state"
+    unit_of_measurement: "V"
+    expire_after: 36000 # 10 timmar
+    device_class: battery
+
 #  - platform: mqtt
 #    name: "Inne temp1"
 #    state_topic: "homeassistant/mini1/temp1"
@@ -244,19 +354,19 @@ sensor:
 
   - platform: mqtt
     state_topic: "homeassistant/xiaomi2/temp"
-    name: "Xiaomi2 temp"
+    name: "Pinnar2 temp"
     unit_of_measurement: "°C"
     expire_after: 36000 # 10 timmar
     device_class: temperature
   - platform: mqtt
     state_topic: "homeassistant/xiaomi2/fukt"
-    name: "Xiaomi2 fukt"
+    name: "Pinnar2 fukt"
     unit_of_measurement: "%"
     expire_after: 36000 # 10 timmar
     device_class: humidity
   - platform: mqtt
     state_topic: "homeassistant/xiaomi2/battery"
-    name: "Xiaomi2 batteri"
+    name: "Pinnar2 batteri"
     unit_of_measurement: "%"
     expire_after: 36000 # 10 timmar
     device_class: battery
