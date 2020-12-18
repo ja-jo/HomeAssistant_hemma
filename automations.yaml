@@ -222,8 +222,25 @@
         seconds: '30'
     condition:
       - condition: state
-        entity_id: device_tracker.chromecast_lan
-        state: not_home
+        entity_id: media_player.lg_webos_tv_e207
+        state: problem
+      - condition: time
+        # At least one of the following is required.
+        after: '00:00:00'
+        before: '05:59:00'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: group.lampor
+
+  - alias: "Lampa av2"
+    trigger:
+      platform: state
+      entity_id: media_player.lg_webos_tv_e207
+      from: 'ok'
+      to: 'problem'
+      for: "00:15:00"
+    condition:
       - condition: time
         # At least one of the following is required.
         after: '00:00:00'
