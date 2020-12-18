@@ -1,0 +1,66 @@
+esphome:
+  name: led
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: "jajo"
+  password: "Jans-n3tverk"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Led Fallback Hotspot"
+    password: "nDjJsfMXFW2q"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+#output:
+#  - platform: gpio
+#    pin: D1
+#    id: led_pin
+
+output:
+  - platform: esp8266_pwm
+    pin: D1
+    frequency: 1000 Hz
+    id: pwm_output
+
+# Example usage in a light
+light:
+  - platform: monochromatic
+    output: pwm_output
+    name: "LED test2"
+    effects:
+      - flicker:
+          alpha: 95%
+          intensity: 10%
+#switch:
+#- platform: gpio
+#  pin: D1
+#  id: led_pin
+#  name: "Test LED"
+
+#- platform: template
+#  name: "LED"
+#  optimistic: yes
+#  id: ledtemp
+#  turn_on_action:
+#  - while:
+#      condition:
+#        lambda: 'return true;'
+#      then:
+#      - switch.turn_on: led_pin
+#      - delay: 500ms 
+#      - switch.turn_off: led_pin
+#      - delay: 500ms
+#  turn_off_action:
+#  - switch.turn_off: led_pin
+

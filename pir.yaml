@@ -1,0 +1,51 @@
+esphome:
+  name: pir
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: "jajo"
+  password: "Jans-n3tverk"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Pir Fallback Hotspot"
+    password: "ixJD8WVZ3Q3z"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: D1
+      #mode: INPUT_PULLUP
+    name: "PIR Sensor"
+    device_class: motion
+
+#    on_press:
+#      then:
+#        - light.turn_on: led
+#    on_release:
+#      then:
+#        - light.turn_off: led
+#        
+#output:
+#  - platform: esp8266_pwm
+#    id: onboard_led
+#    pin:
+#      number: D0
+#      inverted: true
+
+#light:
+# - platform: monochromatic
+#   name: "Onboard LED"
+#   output: onboard_led
+#   id: led

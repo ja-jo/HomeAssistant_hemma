@@ -1,0 +1,94 @@
+esphome:
+  name: testesp
+  comment: "Jans test ESPHome"
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: "jajo"
+  password: "Jans-n3tverk"
+
+  # Optional manual IP
+  manual_ip:
+    static_ip: 192.168.112.143
+    gateway: 192.168.112.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Testesp Fallback Hotspot"
+    password: "eC32I0vjPNPa"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+#deep_sleep:
+#  run_duration: 20s
+#  sleep_duration: 10min
+#  id: deep_sleep_1
+
+#mqtt:
+#  broker: 192.168.112.13
+#  username: homeassistant
+#  password: jans-ha
+#  on_message:
+#    topic: testesp/ota_mode
+#    payload: 'ON'
+#    then:
+#      - deep_sleep.prevent: deep_sleep_1
+
+switch:
+  - platform: restart
+    name: "ESPHome restart"
+
+# Example configuration entry
+dallas:
+  - pin: GPIO12
+
+i2c:
+  sda: 4
+  scl: 5
+  scan: True
+
+# Individual sensors
+sensor:
+  - platform: dallas
+    index: 0
+    name: "Testesp temp"
+
+  - platform: adc
+    pin: A0
+    name: "Testesp batteri"
+
+# Example configuration entry
+  - platform: mpu6050
+    address: 0x68
+    update_interval: 10s
+    accel_x:
+      name: "MPU6050 Accel X"
+    accel_y:
+      name: "MPU6050 Accel Y"
+    accel_z:
+      name: "MPU6050 Accel z"
+    gyro_x:
+      name: "MPU6050 Gyro X"
+    gyro_y:
+      name: "MPU6050 Gyro Y"
+    gyro_z:
+      name: "MPU6050 Gyro z"
+    temperature:
+      name: "MPU6050 Temperature"
+
+# Example configuration entry
+#  - platform: htu21d
+#    temperature:
+#      name: "SI7021 temp"
+#    humidity:
+#      name: "SI7021 fukt"

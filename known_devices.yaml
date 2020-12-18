@@ -446,3 +446,52 @@ anns_iphone_lan_2:
   icon:
   picture:
   track: true
+
+lgwebostv_lan:
+  name: LGwebOSTV.lan
+  mac: 58:FD:B1:98:EF:6E
+  icon:
+  picture:
+  track: true
+
+60_67_20_aa_2d_a8:
+  name: 60_67_20_aa_2d_a8
+  mac: 60:67:20:AA:2D:A8
+  icon:
+  picture:
+  track: true
+
+e4_75_dc_2e_73_7c:
+  name: e4_75_dc_2e_73_7c
+  mac: E4:75:DC:2E:73:7C
+  icon:
+  picture:
+  track: true
+
+debian_lan:
+  name: debian.lan
+  mac: 1A:27:EE:15:75:78
+  icon:
+  picture:
+  track: true
+
+de_26_d7_09_07_9a:
+  name: de_26_d7_09_07_9a
+  mac: DE:26:D7:09:07:9A
+  icon:
+  picture:
+  track: true
+
+esp_1a4548_lan:
+  name: ESP_1A4548.lan
+  mac: F4:CF:A2:1A:45:48
+  icon:
+  picture:
+  track: true
+
+esp_597487_lan:
+  name: ESP_597487.lan
+  mac: C8:2B:96:59:74:87
+  icon:
+  picture:
+  track: true

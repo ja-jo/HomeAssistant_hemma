@@ -8,7 +8,7 @@
       state: home
     action:
   #    - delay: '00:15:00'
-      - service: switch.turn_on
+      - service: light.turn_on
         entity_id: group.lampor
       - service: light.turn_on
         entity_id: light.xiaomi_philips_smart_led_ball
@@ -23,9 +23,6 @@
       event: sunrise
     action:
       - service: light.turn_off
-        data:
-          entity_id: light.xiaomi_philips_smart_led_ball
-      - service: switch.turn_off
         data:
           entity_id: group.lampor
 
@@ -51,7 +48,7 @@
     action:
     - data:
         entity_id: group.lampor
-      service: switch.turn_on
+      service: light.turn_on
 
   - alias: "Full belysning vid pa 19"
     trigger:
@@ -234,9 +231,6 @@
     action:
       - service: light.turn_off
         data:
-          entity_id: light.xiaomi_philips_smart_led_ball
-      - service: switch.turn_off
-        data:
           entity_id: group.lampor
 
   - alias: "Sla av alla lampor om av efter 23"
@@ -250,7 +244,7 @@
       after: '23:00:00'
       #before: '23:59:00'
     action:
-      - service: switch.turn_off
+      - service: light.turn_off
         data:
           entity_id: group.lampor
 
@@ -265,9 +259,6 @@
       after: '22:30:00'
       #before: '23:59:00'
     action:
-      - service: switch.turn_off
-        data:
-          entity_id: group.lampor
       - service: light.turn_off
         data:
           entity_id: group.lampor
@@ -275,27 +266,27 @@
   - alias: Tand lampa
     trigger:
       platform: state
-      entity_id: binary_sensor.pir_sensor
+      entity_id: binary_sensor.pir_sensor2
       to: 'on'
     action:
       service: light.turn_on
-      entity_id: light.xiaomi_philips_smart_led_ball
+      entity_id: group.lampor
   
   - alias: Slack lampa
     trigger:
       platform: state
-      entity_id: binary_sensor.pir_sensor
+      entity_id: binary_sensor.pir_sensor2
       to: 'off'
       for:
         minutes: 2
     action:
       service: light.turn_off
-      entity_id: light.xiaomi_philips_smart_led_ball
+      entity_id: group.lampor
 
   - alias: "Lyse pa margonen"
     trigger:
       platform: state
-      entity_id: binary_sensor.pir_sensor
+      entity_id: binary_sensor.pir_sensor2
       to: 'on'
     condition:
       condition: and
@@ -316,5 +307,5 @@
     action:
     - data:
         entity_id: group.lampor
-      service: switch.turn_on
+      service: light.turn_on
 

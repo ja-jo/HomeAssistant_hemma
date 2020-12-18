@@ -492,3 +492,11 @@ light:
     token: 3404e4287530ab6d2bd9598a279db4c1
     model: philips.light.bulb
 
+  - platform: switch
+    name: Switch2
+    entity_id: switch.nr2
+
+  - platform: switch
+    name: Switch7
+    entity_id: switch.nr7
+

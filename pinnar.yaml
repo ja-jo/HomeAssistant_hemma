@@ -1,0 +1,67 @@
+esphome:
+  name: esp_pinnar
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: "jajo"
+  password: "Jans-n3tverk"
+  # Optional manual IP
+  manual_ip:
+    static_ip: 192.168.112.213
+    gateway: 192.168.112.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp Pinnar Fallback Hotspot"
+    password: "zA06fTkxVut8"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+#api:
+
+ota:
+
+deep_sleep:
+  run_duration: 5s
+  sleep_duration: 60min
+  id: deep_sleep_2
+
+mqtt:
+  broker: 192.168.112.13
+  username: homeassistant
+  password: jans-ha
+  topic_prefix: homeassistant
+  on_message:
+    topic: espinnar/ota_mode
+    payload: 'ON'
+    then:
+      - deep_sleep.prevent: deep_sleep_2
+      - logger.log: "OTA_mode enabled, halting deep sleep"
+
+switch:
+  - platform: restart
+    name: "ESPPinnar restart"
+
+sensor:
+  - platform: dht
+    model: DHT11
+    #model: SI7021
+    update_interval: 10s
+    pin: D1
+    temperature:
+      name: "ESP pinnar temperatur"
+    humidity:
+      name: "ESP pinnar fukt"
+
+  - platform: adc
+    pin: A0
+    name: "ESP pinnar batteri"
+    update_interval: 10s
+    filters:
+      - multiply: 6.39

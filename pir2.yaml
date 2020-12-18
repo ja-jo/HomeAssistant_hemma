@@ -1,0 +1,87 @@
+esphome:
+  name: pir2
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: "jajo"
+  password: "Jans-n3tverk"
+  # Optional manual IP
+  manual_ip:
+    static_ip: 192.168.112.216
+    gateway: 192.168.112.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Pir2 Fallback Hotspot"
+    password: "99tpAEVXRvfn"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: D1
+      #mode: INPUT_PULLUP
+    name: "PIR Sensor2"
+    device_class: motion
+
+sensor:
+  - platform: adc
+    pin: A0
+    name: "Ljusstyrka hemma"
+    unit_of_measurement: lux
+    update_interval: 60s
+    filters:
+      - lambda: return ( 1 - x ) * 1000.0;
+#      - lambda: return (x * 3.3 / 10000.0) * 2000000.0;
+
+#light:
+#  - platform: rgb
+#    name: "RGB LED"
+#    red: output_red
+#    green: output_green
+#    blue: output_blue
+#    effects:
+#      - strobe:
+#      - random:
+#          name: Random Effect With Custom Values
+#          transition_length: 5s
+#          update_interval: 7s
+#      - flicker:
+#      - flicker:
+#          name: Flicker Effect With Custom Values
+#          alpha: 95%
+#          intensity: 11.5%
+
+output:
+  - platform: esp8266_pwm
+    id: pwm_led
+    pin: D5
+
+light:
+  - platform: monochromatic
+    output: pwm_led
+    id: "led_ljus"
+    name: "LED ljus"
+    default_transition_length: 10s
+    effects:
+      - flicker:
+          name: Flicker
+          alpha: 95%
+          intensity: 10%
+    on_turn_on:
+      then:
+        - light.control:
+            id: led_ljus
+            effect: Flicker
+
