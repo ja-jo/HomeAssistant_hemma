@@ -326,3 +326,32 @@
         entity_id: group.lampor
       service: light.turn_on
 
+  - alias: "Lyse pa kvallen"
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_sensor2
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          # At least one of the following is required.
+          after: '14:45:00'
+          before: '23:59:00'
+        - condition: state
+          entity_id: group.lampor
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.stf_l09_is_charging
+          state: 'off'
+        - condition: or
+          conditions:
+            - condition: sun
+              before: sunrise
+            - condition: sun
+              after: sunset
+    action:
+    - data:
+        entity_id: group.lampor
+      service: light.turn_on
+

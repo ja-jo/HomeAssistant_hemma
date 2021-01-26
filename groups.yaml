@@ -25,6 +25,7 @@
       - device_tracker.fias_ipad_lan
       - device_tracker.samsung_galaxy_s7_lan
       - device_tracker.galaxy_s20_lan
+      - device_tracker.fias_s20_lan
 
   dejemyr:
     name: Dejemyrs saker

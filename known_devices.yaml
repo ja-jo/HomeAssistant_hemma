@@ -495,3 +495,24 @@ esp_597487_lan:
   icon:
   picture:
   track: true
+
+anns_iphone_lan_3:
+  name: Anns-Iphone.lan
+  mac: CE:6D:BC:BF:25:5B
+  icon:
+  picture:
+  track: true
+
+galaxy_s20_5g_lan:
+  name: Galaxy-S20-5G.lan
+  mac: CE:70:50:6D:32:D8
+  icon:
+  picture:
+  track: true
+
+fias_s20_lan:
+  name: Fias-S20.lan
+  mac: AA:D7:21:52:3E:98
+  icon:
+  picture:
+  track: true

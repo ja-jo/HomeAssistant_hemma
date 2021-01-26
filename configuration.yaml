@@ -160,6 +160,21 @@ sensor:
 
   - platform: moon
 
+  - platform: template
+    sensors:
+      nextsunrise:
+        entity_id: sun.sun
+        friendly_name: "Soluppg\u00E5ng"
+        value_template: >
+          {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom(' %H:%M') }}
+        icon_template: mdi:weather-sunset-up
+      nextsunset:
+        entity_id: sun.sun
+        friendly_name: "Solnedg\u00E5ng"
+        value_template: >
+          {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom(' %H:%M') }}
+        icon_template: mdi:weather-sunset-down
+
   - platform: trafikverket_weatherstation
     name: "Solna"
     api_key: cd77b4cd4c0c40d4970426637c3c9b34
