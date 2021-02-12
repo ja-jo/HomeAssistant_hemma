@@ -11,6 +11,9 @@ homeassistant:
     sensor.test_volt3:
       hidden: true
 
+  whitelist_external_dirs:
+    - /var/backup/ekonomibackup/
+
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
@@ -190,6 +193,59 @@ sensor:
         - wind_speed_max
         - precipitation_amount
         - precipitation_amountname
+
+  - platform: statistics
+    entity_id: sensor.solna_air_temperature
+    name: Solna temp data
+    sampling_size: 1440
+    max_age:
+      hours: 24
+
+  - platform: statistics
+    entity_id: sensor.solna_precipitation_amount
+    name: Solna regn dag
+    sampling_size: 1440
+    max_age:
+      hours: 24
+
+  - platform: statistics
+    entity_id: sensor.solna_precipitation_amount
+    name: Solna regn vecka
+    sampling_size: 10080
+    max_age:
+      hours: 168
+
+  - platform: statistics
+    entity_id: sensor.solna_precipitation_amount
+    name: Solna regn manad
+    sampling_size: 43200
+    max_age:
+      hours: 720
+
+  - platform: template
+    sensors:
+      solna_temp_max:
+        friendly_name: Solna temp max
+        value_template: "{{ state_attr('sensor.solna_temp_data', 'max_value') }}"
+        unit_of_measurement: '°C'
+        device_class: temperature
+      solna_temp_min:
+        friendly_name: Solna temp min
+        value_template: "{{ state_attr('sensor.solna_temp_data', 'min_value') }}"
+        unit_of_measurement: '°C'
+        device_class: temperature
+      solna_regn_dag_total:
+        friendly_name: Solna regn dag total
+        value_template: "{{ state_attr('sensor.solna_regn_dag', 'total') }}"
+        unit_of_measurement: 'mm'
+      solna_regn_vecka_total:
+        friendly_name: Solna regn vecka total
+        value_template: "{{ state_attr('sensor.solna_regn_vecka', 'total') }}"
+        unit_of_measurement: 'mm'
+      solna_regn_manad_total:
+        friendly_name: Solna regn manad total
+        value_template: "{{ state_attr('sensor.solna_regn_manad', 'total') }}"
+        unit_of_measurement: 'mm'
 
   - platform: mqtt
     state_topic: "owntracks/homeassistant/Janshonor9"
@@ -469,6 +525,26 @@ sensor:
     payload_available: "Online"
     payload_not_available: "Offline"
     device_class: humidity
+
+  - platform: folder
+    folder: /var/backup/ekonomibackup/backup
+
+  - platform: command_line
+    name: Backup2
+    command: "ls -lh /var/backup/ekonomibackup/backup/Datafiler.zip"
+
+#  - platform: command_line
+#    scan_interval: 300
+#    unit_of_measurement: bytes
+#    name: Backup Size
+#    command: "du -cs /var/backup/ekonomibackup/backup | grep total | sed 's/\<total\>//g'"
+
+  - platform: command_line
+    name: CPU Temp
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    # If errors occur, make sure configuration file is encoded as UTF-8
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) | round(1) }}'
 
 device_tracker:
   - platform: nmap_tracker
