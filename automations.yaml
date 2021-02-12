@@ -1,4 +1,4 @@
-  - alias: "Solnedgang"
+  - alias: Solnedgång
     trigger:
       platform: sun
       event: sunset
@@ -17,7 +17,7 @@
           transition: 120
           color_name: white
 
-  - alias: "Lampa av soluppgang"
+  - alias: "Lampa av soluppgång"
     trigger:
       platform: sun
       event: sunrise
@@ -26,7 +26,7 @@
         data:
           entity_id: group.lampor
 
-  - alias: "On nar nagon kommer"
+  - alias: "On nar någon kommer"
     trigger:
       platform: state
       entity_id: group.familjen
@@ -50,7 +50,7 @@
         entity_id: group.lampor
       service: light.turn_on
 
-  - alias: "Full belysning vid pa 19"
+  - alias: "Full belysning vid på 19"
     trigger:
       - platform: state
         entity_id: light.xiaomi_philips_smart_led_ball
@@ -69,7 +69,7 @@
           brightness: 255
           color_name: white
 
-  - alias: "Belysning vid pa 20"
+  - alias: "Belysning vid på 20"
     trigger:
       - platform: state
         entity_id: light.xiaomi_philips_smart_led_ball
@@ -88,7 +88,7 @@
           color_name: yellow
           brightness: 255
 
-  - alias: "Belysning vid pa 21"
+  - alias: "Belysning vid på 21"
     trigger:
       - platform: state
         entity_id: light.xiaomi_philips_smart_led_ball
@@ -107,7 +107,7 @@
           color_name: yellow
           brightness: 150
 
-  - alias: "Belysning vid pa 22"
+  - alias: "Belysning vid på 22"
     trigger:
       - platform: state
         entity_id: light.xiaomi_philips_smart_led_ball
@@ -250,7 +250,7 @@
         data:
           entity_id: group.lampor
 
-  - alias: "Sla av alla lampor om av efter 23"
+  - alias: "Slå av alla lampor om av efter 23"
     trigger:
       - platform: state
         entity_id: light.xiaomi_philips_smart_led_ball
@@ -265,7 +265,7 @@
         data:
           entity_id: group.lampor
 
-  - alias: "Sla av alla lampor om min telefon laddas efter 22:30"
+  - alias: "Slå av alla lampor om min telefon laddas efter 22:30"
     trigger:
       - platform: state
         entity_id: sensor.stf_l09_battery_state
@@ -300,7 +300,7 @@
       service: light.turn_off
       entity_id: group.lampor
 
-  - alias: "Lyse pa margonen"
+  - alias: "Lyse på morgonen"
     trigger:
       platform: state
       entity_id: binary_sensor.pir_sensor2
@@ -326,7 +326,7 @@
         entity_id: group.lampor
       service: light.turn_on
 
-  - alias: "Lyse pa kvallen"
+  - alias: "Lyse på kvallen"
     trigger:
       platform: state
       entity_id: binary_sensor.pir_sensor2
@@ -355,3 +355,45 @@
         entity_id: group.lampor
       service: light.turn_on
 
+  - alias: Slå på lampor vid solnedgång
+    trigger:
+    - event: sunset
+      platform: sun
+    condition:
+    action:
+    - data:
+        entity_id: light.deltaco_sh_op01
+      service: light.turn_on
+  
+  - alias: Efter midnatt
+    trigger:
+      - at: 00:30:00
+        platform: time
+    condition:
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.deltaco_sh_op01
+  
+  - alias: Slå på lampor
+    trigger:
+      - at: 06:00:00
+        platform: time
+    condition:
+      - condition: sun
+        before: sunrise
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.deltaco_sh_op01
+
+  - alias: Slå av lampor vid soluppgång
+    trigger:
+    - event: sunrise
+      platform: sun
+    condition:
+    action:
+    - data:
+        entity_id: light.deltaco_sh_op01
+      service: light.turn_off
+  

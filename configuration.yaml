@@ -353,7 +353,6 @@ sensor:
     unit_of_measurement: "°C"
     expire_after: 36000 # 10 timmar
     device_class: temperature
-#ispindel/iSpindelJD/temp_units C
   - platform: mqtt
     name: "iSpindleJD batteri"
     state_topic: "ispindel/iSpindelJD/battery"
@@ -590,4 +589,8 @@ light:
   - platform: switch
     name: Switch7
     entity_id: switch.nr7
+
+  - platform: switch
+    name: Deltaco SH-OP01
+    entity_id: switch.30214007c82b96597487
 
