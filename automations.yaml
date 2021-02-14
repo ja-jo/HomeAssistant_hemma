@@ -355,7 +355,7 @@
         entity_id: group.lampor
       service: light.turn_on
 
-  - alias: Slå på lampor vid solnedgång
+  - alias: "Slå på lampor vid solnedgång"
     trigger:
     - event: sunset
       platform: sun
@@ -365,9 +365,9 @@
         entity_id: light.deltaco_sh_op01
       service: light.turn_on
   
-  - alias: Efter midnatt
+  - alias: "Efter midnatt"
     trigger:
-      - at: 00:30:00
+      - at: "00:30:00"
         platform: time
     condition:
     action:
@@ -375,9 +375,9 @@
         data:
           entity_id: light.deltaco_sh_op01
   
-  - alias: Slå på lampor
+  - alias: "Slå på lampor"
     trigger:
-      - at: 06:00:00
+      - at: "06:00:00"
         platform: time
     condition:
       - condition: sun
@@ -387,7 +387,7 @@
         data:
           entity_id: light.deltaco_sh_op01
 
-  - alias: Slå av lampor vid soluppgång
+  - alias: "Slå av lampor vid soluppgång"
     trigger:
     - event: sunrise
       platform: sun
